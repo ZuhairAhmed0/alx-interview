@@ -1,16 +1,27 @@
+#!/usr/bin/python3
+""" Script that computes a minimum operations
+    needed in a CopyAll - Paste task
+"""
+
+
 def minOperations(n):
-    if n <= 1:
+    """
+    Method for compute the minimum number
+    of operations for task Copy All and Paste
+
+    Args:
+        n: input value
+        factor_list: List to save the operations
+    Return: the sum of the operations
+    """
+    if n < 2:
         return 0
-
-    operations = 0
-    current = 1
-    clipboard = 0
-
-    while current < n:
-        if n % current == 0:
-            clipboard = current
-            operations += 1
-        current += clipboard
-        operations += 1
-
-    return operations
+    factor_list = []
+    i = 1
+    while n != 1:
+        i += 1
+        if n % i == 0:
+            while n % i == 0:
+                n /= i
+                factor_list.append(i)
+    return sum(factor_list)
